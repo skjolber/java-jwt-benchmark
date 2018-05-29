@@ -1,5 +1,3 @@
-#java-jwt-benchmark
-
 [![Build Status](https://travis-ci.org/skjolber/java-jwt-benchmark.svg?branch=master)](https://travis-ci.org/skjolber/java-jwt-benchmark)
 
 # java-jwt-benchmark
