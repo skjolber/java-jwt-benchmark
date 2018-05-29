@@ -18,6 +18,11 @@ The project is based on [Gradle].
 ```
 ./gradlew clean jmhClasses jmh
 ```
+## Benchmarks
+
+  * Parse token
+  * Verify token
+  * Verify token, get claim.
 
 # History
 
