@@ -14,8 +14,10 @@ The project is based on [Gradle].
 
 # Usage
 ```
-./gradlew clean jmhClasses jmh
+./gradlew --stop && ./gradlew clean jmhClasses jmh
 ```
+
+The JMH plugin seems to have trouble refreshing the project, so restart the Gradle deamon before running.
 ## Benchmarks
 
   * Parse token
