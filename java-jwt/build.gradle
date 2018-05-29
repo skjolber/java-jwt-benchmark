@@ -1,0 +1,10 @@
+jmh {
+    include = ".+Bench.*"
+}
+
+dependencies {
+    jmh("com.auth0:java-jwt:${javaJwtVersion}")
+    jmh("com.auth0:jwks-rsa:${jwksRsaVersion}")
+}
+
+

@@ -1,0 +1,62 @@
+plugins {
+    id "me.champeau.gradle.jmh" version "0.4.5" apply false
+    id 'com.github.ben-manes.versions' version '0.17.0' apply false
+    id 'org.owasp.dependencycheck' version '3.2.1' apply false
+    id "com.github.spotbugs" version "1.6.2" apply false    
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'com.github.ben-manes.versions'
+    apply plugin: 'org.owasp.dependencycheck'
+    apply plugin: 'com.github.spotbugs'
+	apply plugin: 'me.champeau.gradle.jmh'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    
+    ext {
+	    javaJwtVersion = '3.3.0'
+	    jwksRsaVersion = '0.3.0'
+	}
+	
+	jmh {
+		resultFormat = 'JSON'
+		
+		warmup = '1s' // Time to spend at each warmup iteration.
+	    warmupIterations = 5
+	    
+	    fork = 1
+	    timeOnIteration = '5s'
+	    iterations = 5
+	    benchmarkMode = ['thrpt']
+	    
+	}
+}
+
+allprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    eclipse {
+        classpath {
+            downloadSources = true
+            downloadJavadoc = true
+        }
+    }
+
+    // Tell idea to output to build/classes/main instead of /out/
+    idea {
+        module {
+            outputDir file('build/classes/main')
+            testOutputDir file('build/classes/test')
+        }
+    }
+
+    repositories {
+        jcenter()
+    }
+}
+
+
+
