@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/skjolber/java-jwt-benchmark.svg?branch=master)](https://travis-ci.org/skjolber/java-jwt-benchmark)
 
 # java-jwt-benchmark
-Project for benchmarking popular Json Web Token (JWT) frameworks for Java using JMH.
+Project for benchmarking popular Json Web Token (JWT) frameworks for Java using [JMH].
 
 Supported frameworks: 
-  * java-jwt from Auth0
+  * [java-jwt] from [Auth0]
 
 ## License
 [Apache 2.0]
@@ -33,3 +33,6 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
 [Apache 2.0]:          	http://www.apache.org/licenses/LICENSE-2.0.html
 [issue-tracker]:       	https://github.com/skjolber/java-jwt-benchmark/issues
 [Gradle]:               https://gradle.org/
+[java-jwt]:				https://github.com/auth0/java-jwt
+[Auth0]:				https://auth0.com
+[JMH]:					http://openjdk.java.net/projects/code-tools/jmh/
