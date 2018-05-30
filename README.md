@@ -13,8 +13,10 @@ Supported frameworks:
 The project is based on [Gradle].
 
 # Usage
+Modify the build version to your current snapshot, then run 
+
 ```
-./gradlew --stop && ./gradlew clean jmhClasses jmh
+./gradlew --stop && ./gradlew clean jmhClasses jmh --refresh-dependencies --info
 ```
 
 The JMH plugin seems to have trouble refreshing the project, so restart the Gradle deamon before running.

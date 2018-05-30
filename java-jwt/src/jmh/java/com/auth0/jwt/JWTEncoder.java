@@ -1,4 +1,4 @@
-package com.github.skjolber.jjb;
+package com.auth0.jwt;
 
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;

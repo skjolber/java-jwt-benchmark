@@ -11,11 +11,13 @@ subprojects {
     apply plugin: 'org.owasp.dependencycheck'
     apply plugin: 'com.github.spotbugs'
 	apply plugin: 'me.champeau.gradle.jmh'
+	apply plugin: 'maven'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
     
     ext {
+	    //javaJwtVersion = '3.2.0-SNAPSHOT'
 	    javaJwtVersion = '3.3.0'
 	    jwksRsaVersion = '0.3.0'
 	}
@@ -24,14 +26,21 @@ subprojects {
 		resultFormat = 'JSON'
 		
 		warmup = '1s' // Time to spend at each warmup iteration.
-	    warmupIterations = 5
+	    warmupIterations = 10
 	    
 	    fork = 1
 	    timeOnIteration = '5s'
 	    iterations = 5
 	    benchmarkMode = ['thrpt']
 	    
+	    jvmArgs = ['-XX:+UseG1GC']
 	}
+	
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+	
 }
 
 allprojects {
@@ -53,9 +62,6 @@ allprojects {
         }
     }
 
-    repositories {
-        jcenter()
-    }
 }
 
 
