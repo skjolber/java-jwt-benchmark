@@ -5,6 +5,7 @@ Project for benchmarking popular Json Web Token (JWT) frameworks for Java using 
 
 Supported frameworks: 
   * [java-jwt] from [Auth0]
+  * [jjwt] from jwtk
 
 ## License
 [Apache 2.0]
@@ -36,3 +37,4 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
 [java-jwt]:				https://github.com/auth0/java-jwt
 [Auth0]:				https://auth0.com
 [JMH]:					http://openjdk.java.net/projects/code-tools/jmh/
+[jjwt]:					https://github.com/jwtk/jjwt
