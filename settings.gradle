@@ -1,1 +1,1 @@
-include 'java-jwt-bench'
+include 'java-jwt-bench', 'jjwt-bench'

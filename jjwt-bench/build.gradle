@@ -1,0 +1,7 @@
+jmh {
+    include = ".+Bench.*"
+}
+
+dependencies {
+    jmh("io.jsonwebtoken:jjwt:${jjwtVersion}")
+}

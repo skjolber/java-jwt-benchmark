@@ -20,6 +20,7 @@ subprojects {
 	    //javaJwtVersion = '3.2.0-SNAPSHOT'
 	    javaJwtVersion = '3.3.0'
 	    jwksRsaVersion = '0.3.0'
+	    jjwtVersion = '0.9.0'
 	}
 	
 	jmh {
