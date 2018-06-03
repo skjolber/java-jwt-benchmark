@@ -16,7 +16,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.impl.JWTParser;
 
 @State(Scope.Thread)
-public class JwtState {
+public class JavaJwtState {
 	
 	public String token;
 	public JWTVerifier verifier;

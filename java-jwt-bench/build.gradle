@@ -1,10 +1,6 @@
-jmh {
-    include = ".+Bench.*"
-}
-
 dependencies {
-    jmh("com.auth0:java-jwt:${javaJwtVersion}")
-    jmh("com.auth0:jwks-rsa:${jwksRsaVersion}")
+    compile("org.openjdk.jmh:jmh-core:${jmhVersion}")
+    compile("com.auth0:java-jwt:${javaJwtVersion}")
+    compile("com.auth0:jwks-rsa:${jwksRsaVersion}")
 }
-
 

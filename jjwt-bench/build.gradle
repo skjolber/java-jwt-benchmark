@@ -1,7 +1,5 @@
-jmh {
-    include = ".+Bench.*"
+dependencies {
+    compile("org.openjdk.jmh:jmh-core:${jmhVersion}")
+    compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
 }
 
-dependencies {
-    jmh("io.jsonwebtoken:jjwt:${jjwtVersion}")
-}

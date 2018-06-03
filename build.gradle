@@ -1,8 +1,9 @@
 plugins {
-    id "me.champeau.gradle.jmh" version "0.4.5" apply false
+    id 'me.champeau.gradle.jmh' version '0.4.5' apply false
     id 'com.github.ben-manes.versions' version '0.17.0' apply false
     id 'org.owasp.dependencycheck' version '3.2.1' apply false
-    id "com.github.spotbugs" version "1.6.2" apply false    
+    id 'com.github.spotbugs' version '1.6.2' apply false    
+	id 'io.morethan.jmhreport' version '0.7.0' apply false
 }
 
 subprojects {
@@ -10,7 +11,6 @@ subprojects {
     apply plugin: 'com.github.ben-manes.versions'
     apply plugin: 'org.owasp.dependencycheck'
     apply plugin: 'com.github.spotbugs'
-	apply plugin: 'me.champeau.gradle.jmh'
 	apply plugin: 'maven'
 
     sourceCompatibility = 1.8
@@ -21,8 +21,19 @@ subprojects {
 	    javaJwtVersion = '3.3.0'
 	    jwksRsaVersion = '0.3.0'
 	    jjwtVersion = '0.9.0'
+	    jmhVersion = '1.21'
 	}
 	
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+}
+
+configure(project(':jmh-benchmark')) {
+	apply plugin: 'io.morethan.jmhreport'
+	apply plugin: 'me.champeau.gradle.jmh'
+
 	jmh {
 		resultFormat = 'JSON'
 		
@@ -37,11 +48,12 @@ subprojects {
 	    jvmArgs = ['-XX:+UseG1GC']
 	}
 	
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
+	jmhReport {
+		jmhResultPath = project.file("build/reports/jmh/results.json")
+		jmhReportOutput = project.file("build/reports/jmh")
+	}
 	
+	tasks.jmh.finalizedBy tasks.jmhReport
 }
 
 allprojects {

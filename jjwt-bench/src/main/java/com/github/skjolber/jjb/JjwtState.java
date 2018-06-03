@@ -17,7 +17,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 
 @State(Scope.Thread)
-public class JwtState {
+public class JjwtState {
 	
 	public String token;
 	public JwtParser verifier;

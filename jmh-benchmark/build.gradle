@@ -1,0 +1,9 @@
+jmh {
+    include = ".+Bench.*"
+}
+
+dependencies {
+    jmh project(":jjwt-bench")
+    jmh project(":java-jwt-bench")
+}
+
