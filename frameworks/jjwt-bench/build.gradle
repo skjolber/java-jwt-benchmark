@@ -1,0 +1,5 @@
+dependencies {
+	compile project(":jmh-utils")
+    compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
+}
+

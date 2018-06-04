@@ -6,6 +6,7 @@ Project for benchmarking popular Json Web Token (JWT) frameworks for Java using 
 Supported frameworks: 
   * [java-jwt] from [Auth0]
   * [jjwt] from jwtk
+  * [Okta JWT Verifier for Java] from Okta
 
 ## License
 [Apache 2.0]
@@ -23,7 +24,7 @@ Modify the build version to your current snapshot, then run
 The JMH plugin seems to have trouble refreshing the project, so restart the Gradle deamon before running.
 ## Benchmarks
 
-  * Parse token
+  * Parse token (if possible)
   * Verify token
   * Verify token, get claim.
 
@@ -31,10 +32,11 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
 
  - 1.0.0: Initial version
 
-[Apache 2.0]:          	http://www.apache.org/licenses/LICENSE-2.0.html
-[issue-tracker]:       	https://github.com/skjolber/java-jwt-benchmark/issues
-[Gradle]:               https://gradle.org/
-[java-jwt]:				https://github.com/auth0/java-jwt
-[Auth0]:				https://auth0.com
-[JMH]:					http://openjdk.java.net/projects/code-tools/jmh/
-[jjwt]:					https://github.com/jwtk/jjwt
+[Apache 2.0]:          			http://www.apache.org/licenses/LICENSE-2.0.html
+[issue-tracker]:       			https://github.com/skjolber/java-jwt-benchmark/issues
+[Gradle]:              		 	https://gradle.org/
+[java-jwt]:						https://github.com/auth0/java-jwt
+[Auth0]:						https://auth0.com
+[JMH]:							http://openjdk.java.net/projects/code-tools/jmh/
+[jjwt]:							https://github.com/jwtk/jjwt
+[Okta JWT Verifier for Java]: 	https://github.com/okta/okta-jwt-verifier-java

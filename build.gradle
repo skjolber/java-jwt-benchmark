@@ -3,7 +3,7 @@ plugins {
     id 'com.github.ben-manes.versions' version '0.17.0' apply false
     id 'org.owasp.dependencycheck' version '3.2.1' apply false
     id 'com.github.spotbugs' version '1.6.2' apply false    
-	id 'io.morethan.jmhreport' version '0.7.0' apply false
+    id 'io.morethan.jmhreport' version '0.7.0' apply false
 }
 
 subprojects {
@@ -11,19 +11,19 @@ subprojects {
     apply plugin: 'com.github.ben-manes.versions'
     apply plugin: 'org.owasp.dependencycheck'
     apply plugin: 'com.github.spotbugs'
-	apply plugin: 'maven'
+    apply plugin: 'maven'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
     
     ext {
-	    //javaJwtVersion = '3.2.0-SNAPSHOT'
-	    javaJwtVersion = '3.3.0'
-	    jwksRsaVersion = '0.3.0'
-	    jjwtVersion = '0.9.0'
-	    jmhVersion = '1.21'
-	}
-	
+        javaJwtVersion = '3.3.0'
+        jwksRsaVersion = '0.3.0'
+        jjwtVersion = '0.9.0'
+        jmhVersion = '1.21'
+        oktaVersion = '0.3.0'
+    }
+    
     repositories {
         mavenLocal()
         jcenter()
@@ -31,29 +31,29 @@ subprojects {
 }
 
 configure(project(':jmh-benchmark')) {
-	apply plugin: 'io.morethan.jmhreport'
-	apply plugin: 'me.champeau.gradle.jmh'
+    apply plugin: 'io.morethan.jmhreport'
+    apply plugin: 'me.champeau.gradle.jmh'
 
-	jmh {
-		resultFormat = 'JSON'
-		
-		warmup = '1s' // Time to spend at each warmup iteration.
-	    warmupIterations = 10
-	    
-	    fork = 1
-	    timeOnIteration = '5s'
-	    iterations = 5
-	    benchmarkMode = ['thrpt']
-	    
-	    jvmArgs = ['-XX:+UseG1GC']
-	}
-	
-	jmhReport {
-		jmhResultPath = project.file("build/reports/jmh/results.json")
-		jmhReportOutput = project.file("build/reports/jmh")
-	}
-	
-	tasks.jmh.finalizedBy tasks.jmhReport
+    jmh {
+        resultFormat = 'JSON'
+        
+        warmup = '1s' // Time to spend at each warmup iteration.
+        warmupIterations = 10
+        
+        fork = 1
+        timeOnIteration = '5s'
+        iterations = 5
+        benchmarkMode = ['thrpt']
+        
+        jvmArgs = ['-XX:+UseG1GC']
+    }
+    
+    jmhReport {
+        jmhResultPath = project.file("build/reports/jmh/results.json")
+        jmhReportOutput = project.file("build/reports/jmh")
+    }
+    
+    tasks.jmh.finalizedBy tasks.jmhReport
 }
 
 allprojects {

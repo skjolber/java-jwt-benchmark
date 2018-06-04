@@ -3,6 +3,7 @@ package com.auth0.jwt;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -19,9 +20,12 @@ public class JWTEncoder {
 		this.keyPair = keyPair;
 	}
 
-	public String generateTokenAuth0(Map<String, Object> keys, String issuer) throws Exception {
+	public String generateTokenAuth0(Map<String, Object> keys, String issuer, String audience) throws Exception {
         Builder builder = JWT.create()
             .withKeyId("12345678")
+            .withAudience(audience)
+            .withIssuedAt(new Date())
+            .withExpiresAt(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
             .withIssuer(issuer);
 
         for (Entry<String, Object> entry : keys.entrySet()) {

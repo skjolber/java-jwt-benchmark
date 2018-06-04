@@ -1,1 +1,1 @@
-include 'java-jwt-bench', 'jjwt-bench', 'jmh-benchmark'
+include 'jmh-utils', 'frameworks:java-jwt-bench', 'frameworks:jjwt-bench', 'frameworks:okta-jwt-verifier-bench', 'jmh-benchmark'

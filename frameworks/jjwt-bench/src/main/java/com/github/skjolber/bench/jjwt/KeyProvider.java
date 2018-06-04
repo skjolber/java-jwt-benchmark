@@ -1,4 +1,4 @@
-package com.github.skjolber.jjb;
+package com.github.skjolber.bench.jjwt;
 
 import java.security.Key;
 import java.security.KeyPair;

@@ -1,0 +1,4 @@
+dependencies {
+	compile project(":jmh-utils")
+    compile("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
+}

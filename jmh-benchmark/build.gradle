@@ -3,7 +3,8 @@ jmh {
 }
 
 dependencies {
-    jmh project(":jjwt-bench")
-    jmh project(":java-jwt-bench")
+    jmh project(":frameworks:jjwt-bench")
+    jmh project(":frameworks:java-jwt-bench")
+    jmh project(":frameworks:okta-jwt-verifier-bench")
 }
 

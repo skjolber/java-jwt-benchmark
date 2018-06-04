@@ -1,5 +1,5 @@
 dependencies {
-    compile("org.openjdk.jmh:jmh-core:${jmhVersion}")
+	compile project(":jmh-utils")
     compile("com.auth0:java-jwt:${javaJwtVersion}")
     compile("com.auth0:jwks-rsa:${jwksRsaVersion}")
 }
