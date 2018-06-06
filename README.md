@@ -46,9 +46,9 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 [Apache 2.0]:          			http://www.apache.org/licenses/LICENSE-2.0.html
 [issue-tracker]:       			https://github.com/skjolber/java-jwt-benchmark/issues
 [Gradle]:              		 	https://gradle.org/
-[java-jwt]:				https://github.com/auth0/java-jwt
-[Auth0]:				https://auth0.com
-[JMH]:					http://openjdk.java.net/projects/code-tools/jmh/
-[jjwt]:					https://github.com/jwtk/jjwt
-[Okta JWT Verifier for Java]: 		https://github.com/okta/okta-jwt-verifier-java
-[visualization]:			https://skjolber.github.io/java-jwt-benchmark/docs/jmh/index.html
+[java-jwt]:						https://github.com/auth0/java-jwt
+[Auth0]:						https://auth0.com
+[JMH]:							http://openjdk.java.net/projects/code-tools/jmh/
+[jjwt]:							https://github.com/jwtk/jjwt
+[Okta JWT Verifier for Java]: 	https://github.com/okta/okta-jwt-verifier-java
+[visualization]:				https://skjolber.github.io/java-jwt-benchmark/jmh/index.html
