@@ -1,9 +1,9 @@
 plugins {
-    id 'me.champeau.gradle.jmh' version '0.4.5' apply false
-    id 'com.github.ben-manes.versions' version '0.17.0' apply false
-    id 'org.owasp.dependencycheck' version '3.2.1' apply false
-    id 'com.github.spotbugs' version '1.6.2' apply false    
-    id 'io.morethan.jmhreport' version '0.7.0' apply false
+    id 'me.champeau.gradle.jmh' version '0.4.8' apply false
+    id 'com.github.ben-manes.versions' version '0.20.0' apply false
+    id 'org.owasp.dependencycheck' version '4.0.2' apply false
+    id 'com.github.spotbugs' version '1.6.9' apply false    
+    id 'io.morethan.jmhreport' version '0.9.0' apply false
 }
 
 subprojects {
@@ -17,17 +17,42 @@ subprojects {
     targetCompatibility = 1.8
     
     ext {
-        javaJwtVersion = '3.3.0'
-        jwksRsaVersion = '0.4.0'
-        jjwtVersion = '0.9.0'
+        javaJwtVersion = '3.7.0'
+        jwksRsaVersion = '0.7.0'
+        jjwtVersion = '0.9.1'
         jmhVersion = '1.21'
-        oktaVersion = '0.3.0'
+        oktaVersion = '0.4.0'
+        junitJupiterVersion  = '5.3.2'
     }
     
     repositories {
         mavenLocal()
         jcenter()
     }
+    
+    test {
+        useJUnitPlatform {
+            includeEngines 'junit-jupiter'
+        }
+    
+        reports {
+            html.enabled = true
+        }
+    }    
+    
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    }
+
+    // To generate an HTML report instead of XML
+    tasks.withType(com.github.spotbugs.SpotBugsTask) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
 }
 
 configure(project(':jmh-benchmark')) {

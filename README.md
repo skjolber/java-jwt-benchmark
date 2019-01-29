@@ -29,7 +29,29 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
   * Verify token, get claim.
 
 ## Results
-A [visualization] is available, in short:
+Running for OpenJDK 1.8.0 build 191.
+
+A [visualization_v1.1.0] is available, summery:
+
+| Framework | Version | Verify (op/s) | Claim (op/s) |
+| --------- | ----- |----- | ----- |
+|[java-jwt] | 3.7.0/0.7.0 | 14.5k | 14.6k |
+|[jjwt] | 0.9.1 | 14.7k | 14.9k |
+|[Okta JWT Verifier for Java]| 0.4.0 | 0.61k | 0.61k |
+
+In short, **java-jwt has caught up with jjwt, they are now essentially just as fast**. 
+Okta JWT verifiser has regressed into a total disaster. This result should be investigated further, as it might be invalid.
+
+Only [java-jwt] seems to parse without validation, at about 52.3k operations per second.
+
+# Previous results
+Note that **the relative number matters**, benchmarks are not necessarily run on the same machine, operating system or Java version.
+
+## Version 1.0.0:
+
+Running for Oracle JDK 1.8 build unknown-
+
+A [visualization_v1.0.0] is available, summery:
 
 | Framework | Version | Verify (op/s) | Claim (op/s) |
 | --------- | ----- |----- | ----- |
@@ -41,6 +63,7 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 
 # History
 
+ - 1.1.0: Bumped versions after accepted performance-enhancing [PR#255] for java-jwt.
  - 1.0.0: Initial version
 
 [Apache 2.0]:          			http://www.apache.org/licenses/LICENSE-2.0.html
@@ -51,4 +74,6 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 [JMH]:							http://openjdk.java.net/projects/code-tools/jmh/
 [jjwt]:							https://github.com/jwtk/jjwt
 [Okta JWT Verifier for Java]: 	https://github.com/okta/okta-jwt-verifier-java
-[visualization]:				https://skjolber.github.io/java-jwt-benchmark/jmh/index.html
+[visualization_v1.0.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.0.0/index.html
+[visualization_v1.1.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.1.0/index.html
+[PR#255]:				https://github.com/auth0/java-jwt/pull/255
