@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":jmh-utils")
+    compile("io.fusionauth:fusionauth-jwt:${fusionAuthVersion}")
+}
+
+

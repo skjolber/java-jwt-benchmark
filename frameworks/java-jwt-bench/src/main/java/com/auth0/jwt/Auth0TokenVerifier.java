@@ -10,6 +10,7 @@ import com.github.skjolber.bench.utils.JsonWebTokenVerifier;
 public class Auth0TokenVerifier implements JsonWebTokenVerifier<DecodedJWT> {
 
 	private final JWTVerifier verifier;
+	private final JWT jwt;
 
 	public Auth0TokenVerifier(KeyPair keyPair, String issuer, String audience) {
         verifier = JWT
@@ -17,11 +18,16 @@ public class Auth0TokenVerifier implements JsonWebTokenVerifier<DecodedJWT> {
         			.withIssuer(issuer)
         			.withAudience(audience)
         			.build();
+        jwt = new JWT();        
 	}
 	
 	@Override
 	public DecodedJWT verifyJsonWebToken(String token) throws Exception {
 		return verifier.verify(token);
+	}
+
+	public DecodedJWT parseToken(String token) {
+		return jwt.decodeJwt(token);
 	}
 
 }
