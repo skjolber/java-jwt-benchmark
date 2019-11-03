@@ -6,5 +6,6 @@ dependencies {
     jmh project(":frameworks:jjwt-bench")
     jmh project(":frameworks:java-jwt-bench")
     jmh project(":frameworks:okta-jwt-verifier-bench")
+    jmh project(":frameworks:fusionauth-jwt-bench")
 }
 

@@ -1,4 +1,4 @@
-package com.auth0.jwt;
+package com.github.skjolber.jwt;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,8 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
+import com.auth0.jwt.Auth0TokenVerifier;
+import com.github.skjolber.bench.fusionauth.FusionAuthJsonWebTokenVerifier;
 import com.github.skjolber.bench.jjwt.JavaJsonWebTokenVerifier;
 import com.github.skjolber.bench.okta.OktaJsonWebTokenVerifier;
 import com.github.skjolber.bench.utils.JsonWebTokenGenerator;
@@ -17,6 +19,7 @@ public class BenchmarkState {
 
 	private String token;
 
+	private FusionAuthJsonWebTokenVerifier fusionAuthJsonWebTokenVerifier;
 	private OktaJsonWebTokenVerifier oktaJsonWebTokenVerifier;
 	private JavaJsonWebTokenVerifier javaJsonWebTokenVerifier;
 	private Auth0TokenVerifier auth0TokenVerifier;
@@ -34,6 +37,8 @@ public class BenchmarkState {
         token = generator.createJsonWebToken(map, issuer, audience);
 
         oktaJsonWebTokenVerifier = new OktaJsonWebTokenVerifier(generator.getKeyPair(), issuer, audience);
+
+        fusionAuthJsonWebTokenVerifier = new FusionAuthJsonWebTokenVerifier(generator.getKeyPair(), issuer, audience);
         javaJsonWebTokenVerifier = new JavaJsonWebTokenVerifier(generator.getKeyPair(), issuer, audience);
         auth0TokenVerifier = new Auth0TokenVerifier(generator.getKeyPair(), issuer, audience);
 	}
@@ -48,6 +53,10 @@ public class BenchmarkState {
 	
 	public OktaJsonWebTokenVerifier getOktaJsonWebTokenVerifier() {
 		return oktaJsonWebTokenVerifier;
+	}
+	
+	public FusionAuthJsonWebTokenVerifier getFusionAuthJsonWebTokenVerifier() {
+		return fusionAuthJsonWebTokenVerifier;
 	}
 	
 	public String getToken() {

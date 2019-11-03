@@ -1,4 +1,4 @@
-package com.auth0.jwt;
+package com.github.skjolber.jwt;
 
 import org.openjdk.jmh.annotations.Benchmark;
 
@@ -18,4 +18,9 @@ public class JwtVerifyBenchmark {
     public Object okta_verify(BenchmarkState state) throws Exception {
     	return state.getOktaJsonWebTokenVerifier().verifyJsonWebToken(state.getToken());
     }
+    
+    @Benchmark
+    public Object fusionauth_verify(BenchmarkState state) throws Exception {
+    	return state.getFusionAuthJsonWebTokenVerifier().verifyJsonWebToken(state.getToken());
+    }     
 }
