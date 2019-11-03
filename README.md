@@ -32,7 +32,7 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
 ## Results
 Running for OpenJDK 1.8.0 build 232, Linux 5.3.7.
 
-A [visualization_v1.1.0] is available, summery:
+A [visualization_v1.2.0] is available, summery:
 
 | Framework | Version | Verify (op/s) | Claim (op/s) | Parse (op/s)
 | --------- | ----- |----- | ----- | ----- |
