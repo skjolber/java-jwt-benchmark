@@ -1,32 +1,20 @@
 package com.github.skjolber.bench.fusionauth;
 
 import java.security.KeyPair;
+import java.security.interfaces.RSAPublicKey;
 
 import com.github.skjolber.bench.utils.JsonWebTokenVerifier;
 
 import io.fusionauth.jwt.InvalidJWTException;
 import io.fusionauth.jwt.JWTDecoder;
+import io.fusionauth.jwt.JWTUtils;
 import io.fusionauth.jwt.Verifier;
 import io.fusionauth.jwt.domain.Algorithm;
 import io.fusionauth.jwt.domain.JWT;
 import io.fusionauth.jwt.rsa.RSAVerifier;
-import io.fusionauth.pem.domain.PEM;
 
 public class FusionAuthJsonWebTokenVerifier implements JsonWebTokenVerifier<JWT> {
 
-	private final static Verifier nullVerifier = new Verifier() {
-		
-		@Override
-		public void verify(Algorithm algorithm, byte[] message, byte[] signature) {
-			// noop
-		}
-		
-		@Override
-		public boolean canVerify(Algorithm algorithm) {
-			return true;
-		}
-	};
-	
 	private final RSAVerifier verifier;
 	private final JWTDecoder decoder;
 	private final String issuer;
@@ -36,10 +24,9 @@ public class FusionAuthJsonWebTokenVerifier implements JsonWebTokenVerifier<JWT>
 		this.issuer = issuer;
 		this.audience = audience;
 		
-		String encode = PEM.encode(keyPair.getPublic());
+		this.verifier = RSAVerifier.newVerifier((RSAPublicKey) keyPair.getPublic());
 		
-		decoder = JWT.getDecoder();
-		verifier = RSAVerifier.newVerifier(encode);
+		this.decoder = JWT.getDecoder();
 	} 
 	
 	@Override
@@ -59,6 +46,6 @@ public class FusionAuthJsonWebTokenVerifier implements JsonWebTokenVerifier<JWT>
 	}
 
 	public JWT parseToken(String token) throws Exception {
-		return decoder.decode(token, nullVerifier);
+		return JWTUtils.decodePayload(token);
 	}
 }

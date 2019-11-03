@@ -9,7 +9,7 @@ import io.fusionauth.jwt.domain.JWT;
 public class JwtParseBenchmark {
 
 	@Benchmark
-    public JWT parse(BenchmarkState state) throws Exception {
+    public JWT fusionauth_parse(BenchmarkState state) throws Exception {
 		return state.getFusionAuthJsonWebTokenVerifier().parseToken(state.getToken());
     }
 
