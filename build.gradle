@@ -1,8 +1,8 @@
 plugins {
-    id 'me.champeau.gradle.jmh' version '0.4.8' apply false
+    id 'me.champeau.gradle.jmh' version '0.5.2' apply false
     id 'com.github.ben-manes.versions' version '0.27.0' apply false
-    id 'org.owasp.dependencycheck' version '5.2.2' apply false
-    id 'com.github.spotbugs' version '1.6.9' apply false    
+    id 'org.owasp.dependencycheck' version '6.0.5' apply false
+    id "com.github.spotbugs" version "4.5.1" apply false
     id 'io.morethan.jmhreport' version '0.9.0' apply false
 }
 
@@ -17,41 +17,50 @@ subprojects {
     targetCompatibility = 1.8
     
     ext {
-        javaJwtVersion = '3.8.3'
-        jwksRsaVersion = '0.9.0'
+        javaJwtVersion = '3.12.0'
+        jwksRsaVersion = '0.15.0'
         jjwtVersion = '0.9.1'
-        jmhVersion = '1.21'
-        oktaVersion = '0.4.0'
-        fusionAuthVersion = '3.1.6'
-        junitJupiterVersion  = '5.5.2'
+        jmhVersion = '1.27'
+        oktaVersion = '0.5.0'
+        fusionAuthVersion = '4.0.1'
+        junitJupiterVersion = '5.7.0'
+        jaxbVersion = '2.3.1'
     }
     
     repositories {
         mavenLocal()
         jcenter()
     }
-    
+
     test {
         useJUnitPlatform {
             includeEngines 'junit-jupiter'
         }
-    
+
         reports {
             html.enabled = true
         }
-    }    
-    
+    }
+
     dependencies {
         testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     }
 
-    // To generate an HTML report instead of XML
-    tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    spotbugsMain {
         reports {
             xml.enabled = false
             html.enabled = true
         }
+    }
+
+    tasks.matching { task -> task.name.startsWith('spotbugs') }.forEach {
+        it.reports {
+            html.enabled = true
+            xml.enabled = false
+            // spotbugs does not allow to generate a xml and html report at once https://github.com/spotbugs/spotbugs/issues/857
+        }
+        // it.excludeFilter = file("$rootDir/spotbugs-exclude.xml")
     }
 
 }

@@ -1,5 +1,6 @@
 dependencies {
 	compile project(":jmh-utils")
     compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
+    compile("javax.xml.bind:jaxb-api:${jaxbVersion}")
 }
 

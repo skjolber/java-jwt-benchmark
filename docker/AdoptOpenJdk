@@ -1,0 +1,6 @@
+FROM adoptopenjdk/openjdk11:alpine-jre
+
+ADD jmh-benchmark/build/libs/*.jar jmh.jar
+
+ENTRYPOINT ["java", "-Xmx512m", "-jar", "/jmh.jar", ".*Bench.*", "-f", "1", "-wi", "1", "-w", "10", "-i", "5"]
+
