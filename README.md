@@ -30,6 +30,21 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
   * Verify token, get claim.
 
 ## Results
+Running for OpenJDK 1.8.0 build 275-b01, Fedora Linux 5.10.7-200, AMD 5950x.
+
+A [visualization_v1.3.0] is available, summery:
+
+| Framework | Version | Verify (op/s) | Claim (op/s) | Parse (op/s)
+| --------- | ----- |----- | ----- | ----- |
+|[java-jwt] | 3.12.0/0.15.0 | 30.1k | 29.9k | 387k |
+|[fusionauth-jwt]| 4.0.1 | 32.6k | 32.4k | 1196k |
+|[jjwt] | 0.9.1 | 31.4k | 30.7k | |
+|[nimbus]| 9.4.1 | 19.7k | 18.9k | 945k |
+|[Okta JWT Verifier for Java]| 0.5.0 | 1.3k | 1.3k | |
+
+In short, [fusionauth-jwt] is the new fastest parser. Parsing without validation is now faster than before for java-jwt, otherwise no improvements.
+
+## Results
 Running for OpenJDK 1.8.0 build 232, Linux 5.3.7.
 
 A [visualization_v1.2.0] is available, summery:
@@ -78,6 +93,7 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 
 # History
 
+ - 1.3.0: Updated dependencies, added Nimbus JOSE + JWT
  - 1.2.0: Added FusionAuth
  - 1.1.0: Bumped versions after accepted performance-enhancing [PR#255] for java-jwt.
  - 1.0.0: Initial version
@@ -85,14 +101,15 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 [Apache 2.0]:          			http://www.apache.org/licenses/LICENSE-2.0.html
 [issue-tracker]:       			https://github.com/skjolber/java-jwt-benchmark/issues
 [Gradle]:              		 	https://gradle.org/
-[java-jwt]:						https://github.com/auth0/java-jwt
-[Auth0]:						https://auth0.com
-[JMH]:							http://openjdk.java.net/projects/code-tools/jmh/
-[jjwt]:							https://github.com/jwtk/jjwt
-[Okta JWT Verifier for Java]: 	https://github.com/okta/okta-jwt-verifier-java
+[java-jwt]:				https://github.com/auth0/java-jwt
+[Auth0]:				https://auth0.com
+[JMH]:					http://openjdk.java.net/projects/code-tools/jmh/
+[jjwt]:					https://github.com/jwtk/jjwt
+[Okta JWT Verifier for Java]: 		https://github.com/okta/okta-jwt-verifier-java
 [visualization_v1.0.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.0.0/index.html
 [visualization_v1.1.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.1.0/index.html
 [visualization_v1.2.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.2.0/index.html
 [PR#255]:				https://github.com/auth0/java-jwt/pull/255
 [fusionauth-jwt]:			https://github.com/FusionAuth/fusionauth-jwt
 [FusionAuth]:				https://fusionauth.io/
+[Nimbus]:				https://bitbucket.org/connect2id/nimbus-jose-jwt/src/master/
