@@ -39,7 +39,7 @@ A [visualization_v1.3.0] is available, summery:
 |[java-jwt] | 3.12.0/0.15.0 | 30.1k | 29.9k | 387k |
 |[fusionauth-jwt]| 4.0.1 | 32.6k | 32.4k | 1196k |
 |[jjwt] | 0.9.1 | 31.4k | 30.7k | |
-|[nimbus]| 9.4.1 | 19.7k | 18.9k | 945k |
+|[Nimbus-JOSE-JWT]| 9.4.1 | 19.7k | 18.9k | 945k |
 |[Okta JWT Verifier for Java]| 0.5.0 | 1.3k | 1.3k | |
 
 In short, [fusionauth-jwt] is the new fastest parser. Parsing without validation is now faster than before for java-jwt, otherwise no improvements.
@@ -109,7 +109,8 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 [visualization_v1.0.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.0.0/index.html
 [visualization_v1.1.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.1.0/index.html
 [visualization_v1.2.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.2.0/index.html
+[visualization_v1.3.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.3.0/index.html
 [PR#255]:				https://github.com/auth0/java-jwt/pull/255
 [fusionauth-jwt]:			https://github.com/FusionAuth/fusionauth-jwt
 [FusionAuth]:				https://fusionauth.io/
-[Nimbus]:				https://bitbucket.org/connect2id/nimbus-jose-jwt/src/master/
+[Nimbus-JOSE-JWT]:				https://bitbucket.org/connect2id/nimbus-jose-jwt/src/master/
