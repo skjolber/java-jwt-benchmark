@@ -15,6 +15,11 @@ public class JwtClaimBenchmark {
     }
 
     @Benchmark
+    public Object jjwt2_claim(BenchmarkState state) throws Exception {
+        return state.getJavaJsonWebTokenVerifier2().verifyJsonWebToken(state.getToken()).getBody().get("test", String.class);
+    }
+
+    @Benchmark
     public Object auth0_claim(BenchmarkState state) throws Exception {
         return state.getAuth0TokenVerifier().verifyJsonWebToken(state.getToken()).getClaim("test");
     }
@@ -29,5 +34,9 @@ public class JwtClaimBenchmark {
         return state.getFusionAuthJsonWebTokenVerifier().verifyJsonWebToken(state.getToken()).getObject("test");
     }
 
+    @Benchmark
+    public Object fusionauth2_claim(BenchmarkState state) throws Exception {
+        return state.getFusionAuthJsonWebTokenVerifier().verifyJsonWebToken(state.getToken()).getObject("test");
+    }
 
 }

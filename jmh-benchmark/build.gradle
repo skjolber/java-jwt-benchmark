@@ -1,5 +1,5 @@
 jmh {
-    include = ".+Bench.*"
+    include = ".+VerifyBench.*"
 
     duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
 }
