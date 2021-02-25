@@ -51,13 +51,13 @@ import io.jsonwebtoken.lang.Strings;
 @SuppressWarnings("unchecked")
 public class DefaultJwtParser implements JwtParser {
 
-    private static class Decoder {
+    private static class DecoderHelpers {
         private final SignatureAlgorithm alg;
         private final Key key;
         private final CompressionCodec compressionCodec;
         private final Header header;
 
-        private Decoder(SignatureAlgorithm alg, Key key, CompressionCodec compressionCodec, Header header) {
+        private DecoderHelpers(SignatureAlgorithm alg, Key key, CompressionCodec compressionCodec, Header header) {
             this.alg = alg;
             this.key = key;
             this.compressionCodec = compressionCodec;
@@ -77,7 +77,7 @@ public class DefaultJwtParser implements JwtParser {
         }
     }
 
-    private Map<String, Decoder> validators = new ConcurrentHashMap<>();
+    private Map<String, DecoderHelpers> helpers = new ConcurrentHashMap<>();
 
 
     //don't need millis since JWT date fields are only second granularity:
@@ -230,8 +230,8 @@ public class DefaultJwtParser implements JwtParser {
         int index = jwt.indexOf('.');
         String headerAsString = jwt.substring(0, index);
 
-        Decoder existing = this.validators.get(headerAsString);
-        if (existing == null) {
+        DecoderHelpers decoderHelper = this.helpers.get(headerAsString);
+        if (decoderHelper == null) {
             String base64UrlEncodedHeader = null;
             String base64UrlEncodedPayload = null;
             String base64UrlEncodedDigest = null;
@@ -375,8 +375,8 @@ public class DefaultJwtParser implements JwtParser {
                             "signing key, but this cannot be assumed for security reasons.";
                     throw new UnsupportedJwtException(msg, e);
                 }
-                existing = new Decoder(algorithm, key, compressionCodec, header);
-                validators.put(headerAsString, existing);
+                decoderHelper = new DecoderHelpers(algorithm, key, compressionCodec, header);
+                helpers.put(headerAsString, decoderHelper);
             }
         }
 
@@ -384,7 +384,7 @@ public class DefaultJwtParser implements JwtParser {
         String jwtWithoutSignature = jwt.substring(0, endIndex);
         String base64UrlEncodedDigest = jwt.substring(endIndex + 1);
 
-        if (!existing.getValidator().isValid(jwtWithoutSignature, base64UrlEncodedDigest)) {
+        if (!decoderHelper.getValidator().isValid(jwtWithoutSignature, base64UrlEncodedDigest)) {
             String msg = "JWT signature does not match locally computed signature. JWT validity cannot be " +
                     "asserted and should not be trusted.";
             throw new SignatureException(msg);
@@ -394,7 +394,7 @@ public class DefaultJwtParser implements JwtParser {
 
         Claims claims = null;
 
-        CompressionCodec compressionCodec = existing.getCompressionCodec();
+        CompressionCodec compressionCodec = decoderHelper.getCompressionCodec();
         // =============== Body =================
         String payload;
         if (compressionCodec != null) {
@@ -430,7 +430,7 @@ public class DefaultJwtParser implements JwtParser {
                     String msg = "JWT expired at " + expVal + ". Current time: " + nowVal + ", a difference of " +
                             differenceMillis + " milliseconds.  Allowed clock skew: " +
                             this.allowedClockSkewMillis + " milliseconds.";
-                    throw new ExpiredJwtException(existing.getHeader(), claims, msg);
+                    throw new ExpiredJwtException(decoderHelper.getHeader(), claims, msg);
                 }
             }
 
@@ -450,19 +450,19 @@ public class DefaultJwtParser implements JwtParser {
                             ", a difference of " +
                             differenceMillis + " milliseconds.  Allowed clock skew: " +
                             this.allowedClockSkewMillis + " milliseconds.";
-                    throw new PrematureJwtException(existing.getHeader(), claims, msg);
+                    throw new PrematureJwtException(decoderHelper.getHeader(), claims, msg);
                 }
             }
 
-            validateExpectedClaims(existing.getHeader(), claims);
+            validateExpectedClaims(decoderHelper.getHeader(), claims);
         }
 
         Object body = claims != null ? claims : payload;
 
         if (base64UrlEncodedDigest != null) {
-            return new DefaultJws<Object>((JwsHeader) existing.getHeader(), body, base64UrlEncodedDigest);
+            return new DefaultJws<Object>((JwsHeader) decoderHelper.getHeader(), body, base64UrlEncodedDigest);
         } else {
-            return new DefaultJwt<Object>(existing.getHeader(), body);
+            return new DefaultJwt<Object>(decoderHelper.getHeader(), body);
         }
     }
 
