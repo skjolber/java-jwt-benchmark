@@ -44,6 +44,10 @@ subprojects {
     }
 
     dependencies {
+        // JAX-B dependencies for JDK 9+
+        implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+        implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+        
         testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     }

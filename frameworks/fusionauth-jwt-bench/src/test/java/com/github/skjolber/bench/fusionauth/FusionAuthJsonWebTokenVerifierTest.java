@@ -1,22 +1,21 @@
 package com.github.skjolber.bench.fusionauth;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.github.skjolber.bench.utils.JsonWebTokenGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.skjolber.bench.fusionauth.FusionAuthJsonWebTokenVerifier;
-import com.github.skjolber.bench.utils.JsonWebTokenGenerator;
+import java.util.HashMap;
+import java.util.Map;
 
-public class FustionAuthJsonWebTokenVerifierTest {
+public class FusionAuthJsonWebTokenVerifierTest {
 
     @Test
     public void testVerifier() throws Exception {
         JsonWebTokenGenerator generator = new JsonWebTokenGenerator();
-        
+
         Map<String, Object> map = new HashMap<>();
-        map.put("test", "value"); 
-        
+        map.put("test", "value");
+
         String issuer = "https://test";
         String audience = "https://audience";
         
