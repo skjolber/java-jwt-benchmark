@@ -18,7 +18,7 @@ subprojects {
     
     ext {
         javaJwtVersion = '3.18.1'
-        jwksRsaVersion = '0.15.0'
+        jwksRsaVersion = '0.19.0'
         jjwtVersion = '0.9.1'
         nimbusVersion = '9.4.1'
         jmhVersion = '1.32'
