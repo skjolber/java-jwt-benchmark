@@ -22,7 +22,7 @@ subprojects {
         jjwtVersion = '0.9.1'
         nimbusVersion = '9.4.1'
         jmhVersion = '1.32'
-        oktaVersion = '0.5.0'
+        oktaVersion = '0.5.1'
         fusionAuthVersion = '4.2.0'
         junitJupiterVersion = '5.7.0'
         jaxbVersion = '2.3.1'
