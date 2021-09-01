@@ -23,6 +23,14 @@ Modify the build version to your current snapshot, then run
 ./gradlew --stop && ./gradlew clean jmhClasses jmh --refresh-dependencies --info
 ```
 
+## Disable CPU Boost
+
+Temporarily disable boost (untill next reboot) for AMD:
+
+ > echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
+
+
+
 The JMH plugin seems to have trouble refreshing the project, so restart the Gradle deamon before running.
 ## Benchmarks
 
@@ -31,6 +39,13 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
   * Verify token, get claim.
 
 ## Results
+Running for OpenJDK 11 build 11.0.11.0.9, Fedora Linux 5.13.4-200, AMD Ryzen 7 PRO 3700U laptop.
+
+A [visualization_v1.4.0] is available, versions:
+
+In short, [fusionauth-jwt] is the fastest parser, but Java-jwt is very close.
+
+## Version 1.3.0:
 Running for OpenJDK 1.8.0 build 275-b01, Fedora Linux 5.10.7-200, AMD 5950x.
 
 A [visualization_v1.3.0] is available, summery:
@@ -111,6 +126,7 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 [visualization_v1.1.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.1.0/index.html
 [visualization_v1.2.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.2.0/index.html
 [visualization_v1.3.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.3.0/index.html
+[visualization_v1.4.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.4.0/index.html
 [PR#255]:				https://github.com/auth0/java-jwt/pull/255
 [fusionauth-jwt]:			https://github.com/FusionAuth/fusionauth-jwt
 [FusionAuth]:				https://fusionauth.io/
