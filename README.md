@@ -41,9 +41,7 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
 ## Results
 Running for OpenJDK 11 build 11.0.11.0.9, Fedora Linux 5.13.4-200, AMD Ryzen 7 PRO 3700U laptop.
 
-A [visualization_v1.4.0] is available, versions:
-
-In short, [fusionauth-jwt] is the fastest parser, but Java-jwt is very close.
+A [visualization_v1.4.0] is available. In short, [fusionauth-jwt] is the fastest parser, but Java-jwt is very close.
 
 ## Version 1.3.0:
 Running for OpenJDK 1.8.0 build 275-b01, Fedora Linux 5.10.7-200, AMD 5950x.
