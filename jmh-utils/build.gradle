@@ -1,5 +1,10 @@
 dependencies {
-    compile("org.openjdk.jmh:jmh-core:${jmhVersion}")
-    compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
+    api("org.openjdk.jmh:jmh-core:${jmhVersion}")
+
+    api "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+    api "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+    api "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+
+
 }
 

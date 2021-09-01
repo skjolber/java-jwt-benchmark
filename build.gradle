@@ -1,36 +1,74 @@
 plugins {
-    id 'me.champeau.gradle.jmh' version '0.5.3' apply false
+    id 'me.champeau.jmh' version '0.6.5' apply false
     id 'com.github.ben-manes.versions' version '0.39.0' apply false
     id 'org.owasp.dependencycheck' version '6.2.2' apply false
     id "com.github.spotbugs" version "4.7.2" apply false
     id 'io.morethan.jmhreport' version '0.9.0' apply false
 }
 
-subprojects {
+ext {
+    javaJwtVersion = '3.18.1'
+    jwksRsaVersion = '0.19.0'
+    jjwtVersion = '0.11.2'
+    nimbusVersion = '9.13'
+    jmhVersion = '1.33'
+    oktaVersion = '0.5.1'
+    fusionAuthVersion = '4.3.0'
+    junitJupiterVersion = '5.7.2'
+    jaxbVersion = '2.3.1'
+}
+
+def buildProjects() {
+    subprojects.findAll { new File(it.projectDir, 'build.gradle').file }
+}
+
+def libraryProjects() {
+    buildProjects().findAll { !it.name.equals("jmh-benchmark") }
+}
+
+configure(libraryProjects()) {
+    apply plugin: 'java-library'
+}
+
+configure(project(':jmh-benchmark')) {
     apply plugin: 'java'
+    apply plugin: 'io.morethan.jmhreport'
+    apply plugin: 'me.champeau.jmh'
+
+    jmh {
+        resultFormat = 'JSON'
+
+        warmup = '1s' // Time to spend at each warmup iteration.
+        warmupIterations = 10
+        
+        fork = 1
+        timeOnIteration = '5s'
+        iterations = 5
+        benchmarkMode = ['thrpt']
+
+        jvmArgs = ['-XX:+UseG1GC']
+    }
+
+    jmhReport {
+        jmhResultPath = project.file("build/results/jmh/results.json")
+        jmhReportOutput = project.file("build/results/jmh")
+    }
+
+    tasks.jmh.finalizedBy tasks.jmhReport
+}
+
+
+configure(buildProjects()) {
     apply plugin: 'com.github.ben-manes.versions'
     apply plugin: 'org.owasp.dependencycheck'
     apply plugin: 'com.github.spotbugs'
-    apply plugin: 'maven'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
-    
-    ext {
-        javaJwtVersion = '3.18.1'
-        jwksRsaVersion = '0.19.0'
-        jjwtVersion = '0.9.1'
-        nimbusVersion = '9.11.2'
-        jmhVersion = '1.32'
-        oktaVersion = '0.5.1'
-        fusionAuthVersion = '4.2.0'
-        junitJupiterVersion = '5.7.2'
-        jaxbVersion = '2.3.1'
-    }
-    
+
     repositories {
         mavenLocal()
-        jcenter()
+        mavenCentral()
     }
 
     test {
@@ -63,36 +101,9 @@ subprojects {
         }
         // it.excludeFilter = file("$rootDir/spotbugs-exclude.xml")
     }
-
 }
 
-configure(project(':jmh-benchmark')) {
-    apply plugin: 'io.morethan.jmhreport'
-    apply plugin: 'me.champeau.gradle.jmh'
-
-    jmh {
-        resultFormat = 'JSON'
-        
-        warmup = '1s' // Time to spend at each warmup iteration.
-        warmupIterations = 10
-        
-        fork = 1
-        timeOnIteration = '5s'
-        iterations = 5
-        benchmarkMode = ['thrpt']
-        
-        jvmArgs = ['-XX:+UseG1GC']
-    }
-    
-    jmhReport {
-        jmhResultPath = project.file("build/reports/jmh/results.json")
-        jmhReportOutput = project.file("build/reports/jmh")
-    }
-    
-    tasks.jmh.finalizedBy tasks.jmhReport
-}
-
-allprojects {
+configure(buildProjects()) {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
 
@@ -112,6 +123,3 @@ allprojects {
     }
 
 }
-
-
-

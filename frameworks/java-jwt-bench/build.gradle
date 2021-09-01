@@ -1,6 +1,6 @@
 dependencies {
-	compile project(":jmh-utils")
-    compile("com.auth0:java-jwt:${javaJwtVersion}")
-    compile("com.auth0:jwks-rsa:${jwksRsaVersion}")
+    api project(":jmh-utils")
+    api("com.auth0:java-jwt:${javaJwtVersion}")
+    api("com.auth0:jwks-rsa:${jwksRsaVersion}")
 }
 

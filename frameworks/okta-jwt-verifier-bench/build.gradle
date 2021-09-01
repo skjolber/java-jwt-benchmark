@@ -1,9 +1,7 @@
 dependencies {
-	compile project(":jmh-utils")
-    compile("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
-    compile("com.okta.jwt:okta-jwt-verifier-impl:${oktaVersion}")
-    
-    testImplementation project(":jmh-utils")
+    api project(":jmh-utils")
+    api("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
+    api("com.okta.jwt:okta-jwt-verifier-impl:${oktaVersion}")
 }
 
 

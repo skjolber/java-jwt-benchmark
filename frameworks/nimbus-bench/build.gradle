@@ -1,7 +1,6 @@
 dependencies {
-	compile project(":jmh-utils")
-
-    compile "com.nimbusds:nimbus-jose-jwt:${nimbusVersion}"
+    api project(":jmh-utils")
+    api "com.nimbusds:nimbus-jose-jwt:${nimbusVersion}"
 
 }
 
