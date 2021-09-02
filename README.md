@@ -38,10 +38,13 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
   * Verify token
   * Verify token, get claim.
 
-## Results
+## Latest results
 Running for OpenJDK 11 build 11.0.11.0.9, Fedora Linux 5.13.4-200, AMD Ryzen 7 PRO 3700U laptop.
 
 A [visualization_v1.4.0] is available. In short, [fusionauth-jwt] is the fastest parser, but Java-jwt is very close.
+
+# Previous results
+Note that **the relative number matters**, benchmarks are not necessarily run on the same machine, operating system or Java version.
 
 ## Version 1.3.0:
 Running for OpenJDK 1.8.0 build 275-b01, Fedora Linux 5.10.7-200, AMD 5950x.
@@ -57,9 +60,6 @@ A [visualization_v1.3.0] is available, summery:
 |[Okta JWT Verifier for Java]| 0.5.0 | 1.3k | 1.3k | |
 
 In short, [fusionauth-jwt] is the fastest parser. Parsing without validation is now faster than before for java-jwt, otherwise no improvements.
-
-# Previous results
-Note that **the relative number matters**, benchmarks are not necessarily run on the same machine, operating system or Java version.
 
 ## Version 1.2.0:
 Running for OpenJDK 1.8.0 build 232, Linux 5.3.7.
