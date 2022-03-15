@@ -23,6 +23,8 @@ Modify the build version to your current snapshot, then run
 ./gradlew --stop && ./gradlew clean jmhClasses jmh --refresh-dependencies --info
 ```
 
+Note: Requires Java 8 to build, there is some classpath issue with Java 11 which I've yet to understand.
+
 ## Disable CPU Boost
 
 Temporarily disable boost (untill next reboot) for AMD:

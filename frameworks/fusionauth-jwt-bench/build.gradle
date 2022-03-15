@@ -1,6 +1,7 @@
 
 dependencies {
-    implementation(project(":jmh-utils"))
+    implementation project(":jmh-utils")
+    testRuntimeOnly project(":jmh-utils")
     api("io.fusionauth:fusionauth-jwt:${fusionAuthVersion}")
 }
 

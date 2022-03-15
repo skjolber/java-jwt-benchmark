@@ -1,7 +1,7 @@
 plugins {
     id 'me.champeau.jmh' version '0.6.6' apply false
-    id 'com.github.ben-manes.versions' version '0.39.0' apply false
-    id 'org.owasp.dependencycheck' version '6.5.3' apply false
+    id 'com.github.ben-manes.versions' version '0.42.0' apply false
+    id 'org.owasp.dependencycheck' version '7.0.0' apply false
     id "com.github.spotbugs" version "4.8.0" apply false
     id 'io.morethan.jmhreport' version '0.9.0' apply false
 }
@@ -30,6 +30,7 @@ configure(libraryProjects()) {
     apply plugin: 'java-library'
 }
 
+
 configure(project(':jmh-benchmark')) {
     apply plugin: 'java'
     apply plugin: 'io.morethan.jmhreport'
@@ -40,7 +41,7 @@ configure(project(':jmh-benchmark')) {
 
         warmup = '1s' // Time to spend at each warmup iteration.
         warmupIterations = 10
-        
+
         fork = 1
         timeOnIteration = '5s'
         iterations = 5
@@ -57,7 +58,6 @@ configure(project(':jmh-benchmark')) {
     tasks.jmh.finalizedBy tasks.jmhReport
 }
 
-
 configure(buildProjects()) {
     apply plugin: 'com.github.ben-manes.versions'
     apply plugin: 'org.owasp.dependencycheck'
@@ -73,12 +73,14 @@ configure(buildProjects()) {
 
     test {
         useJUnitPlatform {
-            includeEngines 'junit-jupiter'
+            
         }
 
         reports {
             html.enabled = true
         }
+
+        forkEvery = 1
     }
 
     dependencies {
@@ -114,12 +116,5 @@ configure(buildProjects()) {
         }
     }
 
-    // Tell idea to output to build/classes/main instead of /out/
-    idea {
-        module {
-            outputDir file('build/classes/main')
-            testOutputDir file('build/classes/test')
-        }
-    }
 
 }
