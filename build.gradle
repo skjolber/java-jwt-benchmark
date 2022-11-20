@@ -10,7 +10,7 @@ ext {
     javaJwtVersion = '3.19.1'
     jwksRsaVersion = '0.21.1'
     jjwtVersion = '0.11.2'
-    nimbusVersion = '9.21'
+    nimbusVersion = '9.25.6'
     jmhVersion = '1.35'
     oktaVersion = '0.5.1'
     fusionAuthVersion = '5.1.1'
