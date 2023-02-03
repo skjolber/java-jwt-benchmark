@@ -1,20 +1,20 @@
 plugins {
     id 'me.champeau.jmh' version '0.6.8' apply false
     id 'com.github.ben-manes.versions' version '0.42.0' apply false
-    id 'org.owasp.dependencycheck' version '7.0.4.1' apply false
+    id 'org.owasp.dependencycheck' version '8.0.2' apply false
     id "com.github.spotbugs" version "5.0.13" apply false
     id 'io.morethan.jmhreport' version '0.9.0' apply false
 }
 
 ext {
-    javaJwtVersion = '3.19.4'
-    jwksRsaVersion = '0.21.2'
+    javaJwtVersion = '4.2.2'
+    jwksRsaVersion = '0.21.3'
     jjwtVersion = '0.11.5'
-    nimbusVersion = '9.21'
-    jmhVersion = '1.35'
+    nimbusVersion = '9.30.1'
+    jmhVersion = '1.36'
     oktaVersion = '0.5.7'
-    fusionAuthVersion = '5.1.1'
-    junitJupiterVersion = '5.8.2'
+    fusionAuthVersion = '5.2.2'
+    junitJupiterVersion = '5.9.2'
     jaxbVersion = '2.3.1'
 }
 
@@ -29,7 +29,6 @@ def libraryProjects() {
 configure(libraryProjects()) {
     apply plugin: 'java-library'
 }
-
 
 configure(project(':jmh-benchmark')) {
     apply plugin: 'java'
@@ -73,7 +72,7 @@ configure(buildProjects()) {
 
     test {
         useJUnitPlatform {
-            
+
         }
 
         reports {
