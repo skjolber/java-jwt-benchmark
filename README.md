@@ -48,7 +48,7 @@ Result visualizations:
  * [visualization_v1.5.0_jdk11]
  * [visualization_v1.5.0_jdk17]
  
-In short, [fusionauth-jwt] is marginally faster than [java-jwt] for JWT verification. [fusionauth-jwt] can parse faster (without verification).
+Summary: For JWT verification [fusionauth-jwt] and [java-jwt] are tied for first place. [fusionauth-jwt] can parse faster (without verification).
 
 # Previous results
 Note that **the relative number matters**, benchmarks are not necessarily run on the same machine, operating system or Java version.
