@@ -4,10 +4,9 @@ import java.security.KeyPair;
 
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.github.skjolber.bench.utils.JsonWebTokenVerifier;
 
 
-public class Auth0TokenVerifier implements JsonWebTokenVerifier<DecodedJWT> {
+public class Auth0TokenVerifier {
 
 	private final JWTVerifier verifier;
 	private final JWT jwt;
@@ -20,8 +19,7 @@ public class Auth0TokenVerifier implements JsonWebTokenVerifier<DecodedJWT> {
         			.build();
         jwt = new JWT();        
 	}
-	
-	@Override
+
 	public DecodedJWT verifyJsonWebToken(String token) throws Exception {
 		return verifier.verify(token);
 	}

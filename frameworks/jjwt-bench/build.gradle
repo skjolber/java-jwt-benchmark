@@ -1,5 +1,4 @@
 dependencies {
-    api project(":jmh-utils")
     api "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
     api "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
     api "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"

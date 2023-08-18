@@ -4,7 +4,6 @@ import java.security.Key;
 import java.security.KeyPair;
 import java.time.Duration;
 
-import com.github.skjolber.bench.utils.JsonWebTokenVerifier;
 import com.okta.jwt.Jwt;
 import com.okta.jwt.impl.jjwt.JjwtAccessTokenVerifier;
 
@@ -12,7 +11,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.SigningKeyResolver;
 
-public class OktaJsonWebTokenVerifier implements JsonWebTokenVerifier<Jwt> {
+public class OktaJsonWebTokenVerifier {
 
 	private final JjwtAccessTokenVerifier verifier;
 
@@ -32,8 +31,7 @@ public class OktaJsonWebTokenVerifier implements JsonWebTokenVerifier<Jwt> {
         };
         verifier = new JjwtAccessTokenVerifier(issuer, audience, Duration.ZERO, resolver);
 	} 
-	
-	@Override
+
 	public Jwt verifyJsonWebToken(String token) throws Exception {
 		return verifier.decode(token);
 	}

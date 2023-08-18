@@ -3,17 +3,13 @@ package com.github.skjolber.bench.fusionauth;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPublicKey;
 
-import com.github.skjolber.bench.utils.JsonWebTokenVerifier;
-
 import io.fusionauth.jwt.InvalidJWTException;
 import io.fusionauth.jwt.JWTDecoder;
 import io.fusionauth.jwt.JWTUtils;
-import io.fusionauth.jwt.Verifier;
-import io.fusionauth.jwt.domain.Algorithm;
 import io.fusionauth.jwt.domain.JWT;
 import io.fusionauth.jwt.rsa.RSAVerifier;
 
-public class FusionAuthJsonWebTokenVerifier implements JsonWebTokenVerifier<JWT> {
+public class FusionAuthJsonWebTokenVerifier {
 
 	private final RSAVerifier verifier;
 	private final JWTDecoder decoder;
@@ -28,8 +24,7 @@ public class FusionAuthJsonWebTokenVerifier implements JsonWebTokenVerifier<JWT>
 		
 		this.decoder = JWT.getDecoder();
 	} 
-	
-	@Override
+
 	public JWT verifyJsonWebToken(String token) {
 		JWT jwt =  decoder.decode(token, verifier);
 

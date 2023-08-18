@@ -28,6 +28,39 @@ def libraryProjects() {
 
 configure(libraryProjects()) {
     apply plugin: 'java-library'
+
+    test {
+        useJUnitPlatform {
+
+        }
+        forkEvery = 1
+    }
+
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    }
+
+}
+
+configure(buildProjects()) {
+    apply plugin: 'com.github.ben-manes.versions'
+    apply plugin: 'org.owasp.dependencycheck'
+    apply plugin: 'com.github.spotbugs'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    tasks.matching { task -> task.name.startsWith('spotbugs') }.forEach {
+        it.reports {
+            html.enabled = true
+            xml.enabled = false
+            // spotbugs does not allow to generate a xml and html report at once https://github.com/spotbugs/spotbugs/issues/857
+        }
+        // it.excludeFilter = file("$rootDir/spotbugs-exclude.xml")
+    }
 }
 
 configure(project(':jmh-benchmark')) {
@@ -57,52 +90,6 @@ configure(project(':jmh-benchmark')) {
     tasks.jmh.finalizedBy tasks.jmhReport
 }
 
-configure(buildProjects()) {
-    apply plugin: 'com.github.ben-manes.versions'
-    apply plugin: 'org.owasp.dependencycheck'
-    apply plugin: 'com.github.spotbugs'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-
-    test {
-        useJUnitPlatform {
-
-        }
-
-        reports {
-            html.enabled = true
-        }
-
-        forkEvery = 1
-    }
-
-    dependencies {
-        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
-    }
-
-    spotbugsMain {
-        reports {
-            xml.enabled = false
-            html.enabled = true
-        }
-    }
-
-    tasks.matching { task -> task.name.startsWith('spotbugs') }.forEach {
-        it.reports {
-            html.enabled = true
-            xml.enabled = false
-            // spotbugs does not allow to generate a xml and html report at once https://github.com/spotbugs/spotbugs/issues/857
-        }
-        // it.excludeFilter = file("$rootDir/spotbugs-exclude.xml")
-    }
-}
 
 configure(buildProjects()) {
     apply plugin: 'eclipse'

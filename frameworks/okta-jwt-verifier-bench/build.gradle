@@ -1,5 +1,4 @@
 dependencies {
-    api(project(":jmh-utils"))
     api("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
     api("com.okta.jwt:okta-jwt-verifier-impl:${oktaVersion}")
 }

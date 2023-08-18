@@ -1,6 +1,5 @@
 
 dependencies {
-    api(project(":jmh-utils"))
     api("io.fusionauth:fusionauth-jwt:${fusionAuthVersion}")
 }
 

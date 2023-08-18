@@ -1,6 +1,5 @@
 package com.github.skjolber.bench.nimbus;
 
-import com.github.skjolber.bench.utils.JsonWebTokenVerifier;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -24,7 +23,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.text.ParseException;
 import java.util.UUID;
 
-public class NimbusJsonWebTokenVerifier implements JsonWebTokenVerifier<JWTClaimsSet> {
+public class NimbusJsonWebTokenVerifier {
 
 	private final ConfigurableJWTProcessor<SecurityContext> jwtProcessor;
 
@@ -47,8 +46,7 @@ public class NimbusJsonWebTokenVerifier implements JsonWebTokenVerifier<JWTClaim
 
 		jwtProcessor.setJWSKeySelector(keySelector);
 	}
-	
-	@Override
+
 	public JWTClaimsSet verifyJsonWebToken(String token) throws Exception {
 		return jwtProcessor.process(token, null);
 	}
