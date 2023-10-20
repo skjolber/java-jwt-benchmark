@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/skjolber/java-jwt-benchmark.svg?branch=master)](https://travis-ci.org/skjolber/java-jwt-benchmark)
-
 # java-jwt-benchmark
 Project for benchmarking popular Json Web Token (JWT) frameworks for Java using [JMH].
 
