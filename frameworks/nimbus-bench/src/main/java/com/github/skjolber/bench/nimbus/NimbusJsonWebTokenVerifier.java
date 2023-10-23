@@ -25,10 +25,7 @@ import java.util.UUID;
 
 public class NimbusJsonWebTokenVerifier {
 
-	private final ConfigurableJWTProcessor<SecurityContext> jwtProcessor;
-
-	public NimbusJsonWebTokenVerifier(KeyPair keyPair, String issuer, String audience) throws JOSEException, MalformedURLException {
-
+	public static NimbusJsonWebTokenVerifier newInstance(KeyPair keyPair, String issuer, String audience) throws JOSEException, MalformedURLException {
 		// Convert to JWK format
 		RSAKey rsaJWK = new RSAKey.Builder((RSAPublicKey)keyPair.getPublic())
 				.privateKey((RSAPrivateKey)keyPair.getPrivate())
@@ -36,14 +33,19 @@ public class NimbusJsonWebTokenVerifier {
 				.keyID(UUID.randomUUID().toString())
 				.build();
 
-		jwtProcessor = new DefaultJWTProcessor<>();
-
 		JWKSource keySource = new ImmutableJWKSet(new JWKSet(rsaJWK));
 
 		JWSAlgorithm expectedJWSAlg = JWSAlgorithm.RS256;
 
 		JWSKeySelector<SecurityContext> keySelector = new JWSVerificationKeySelector<>(expectedJWSAlg, keySource);
 
+		return new NimbusJsonWebTokenVerifier(keySelector);
+	}
+
+	private final ConfigurableJWTProcessor<SecurityContext> jwtProcessor;
+
+	public NimbusJsonWebTokenVerifier(JWSKeySelector<SecurityContext> keySelector) {
+		jwtProcessor = new DefaultJWTProcessor<>();
 		jwtProcessor.setJWSKeySelector(keySelector);
 	}
 

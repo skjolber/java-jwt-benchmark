@@ -9,14 +9,20 @@ import io.jsonwebtoken.Jwts;
 
 public class JavaJsonWebTokenVerifier {
 
+	public static JavaJsonWebTokenVerifier newInstance(KeyPair keyPair, String issuer, String audience) {
+		JwtParser jwtParseruild = Jwts.parser()
+				.setSigningKeyResolver(new KeyProvider(keyPair))
+				.requireAudience(audience)
+				.requireIssuer(issuer)
+				.build();
+
+		return new JavaJsonWebTokenVerifier(jwtParseruild);
+	}
+
 	private final JwtParser verifier;
 
-	public JavaJsonWebTokenVerifier(KeyPair keyPair, String issuer, String audience) {
-        verifier = Jwts.parser()
-        		.setSigningKeyResolver(new KeyProvider(keyPair))
-        		.requireAudience(audience)
-        		.requireIssuer(issuer)
-        		;
+	public JavaJsonWebTokenVerifier(JwtParser verifier) {
+		this.verifier = verifier;
 	}
 
 	public Jws<Claims> verifyJsonWebToken(String token) throws Exception {

@@ -23,7 +23,7 @@ public class KeyProvider implements SigningKeyResolver {
 	}
 
 	@Override
-	public Key resolveSigningKey(JwsHeader header, String plaintext) {
+	public Key resolveSigningKey(JwsHeader header, byte[] plaintext) {
 		return (RSAPublicKey) keyPair.getPublic();
 	}
 

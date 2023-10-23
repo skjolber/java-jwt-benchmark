@@ -3,5 +3,7 @@ dependencies {
     api "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
     api "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
     api("javax.xml.bind:jaxb-api:${jaxbVersion}")
+
+    api project(":jmh-benchmark")
 }
 

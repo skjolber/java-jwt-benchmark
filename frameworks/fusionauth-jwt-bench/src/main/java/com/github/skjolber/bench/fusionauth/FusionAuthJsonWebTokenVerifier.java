@@ -11,17 +11,21 @@ import io.fusionauth.jwt.rsa.RSAVerifier;
 
 public class FusionAuthJsonWebTokenVerifier {
 
+	public static FusionAuthJsonWebTokenVerifier newInstance(KeyPair keyPair, String issuer, String audience) {
+		RSAVerifier rsaVerifier = RSAVerifier.newVerifier((RSAPublicKey) keyPair.getPublic());
+
+		return new FusionAuthJsonWebTokenVerifier(issuer, audience, rsaVerifier);
+	}
+
 	private final RSAVerifier verifier;
 	private final JWTDecoder decoder;
 	private final String issuer;
 	private final String audience;
 
-	public FusionAuthJsonWebTokenVerifier(KeyPair keyPair, String issuer, String audience) {
+	public FusionAuthJsonWebTokenVerifier(String issuer, String audience, RSAVerifier verifier) {
 		this.issuer = issuer;
 		this.audience = audience;
-		
-		this.verifier = RSAVerifier.newVerifier((RSAPublicKey) keyPair.getPublic());
-		
+		this.verifier = verifier;
 		this.decoder = JWT.getDecoder();
 	} 
 
