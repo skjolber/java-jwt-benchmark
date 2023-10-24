@@ -38,6 +38,9 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
   * Verify token
   * Verify token, get claim.
 
+## General observations
+There is not much headroom for improving the performance further. Most of the CPU time goes to signature verification.
+
 ## Latest results
 Running for OpenJDK 11 build 11.0.18+10 and OpenJDK 17 build 17.0.6+10, on Fedora Linux 6.1.8-200, AMD Ryzen 5950.
 
@@ -117,6 +120,7 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 
 # History
 
+ - 1.x: Added baseline JWT verifiers
  - 1.5.0: Updated dependencies
  - 1.3.0: Updated dependencies, added Nimbus JOSE + JWT
  - 1.2.0: Added FusionAuth

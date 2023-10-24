@@ -1,0 +1,11 @@
+dependencies {
+
+    // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk18on
+    api "org.bouncycastle:bcprov-jdk18on:${bouncyCastleVersion}"
+    api ("com.brsanthu:migbase64:2.2")
+    api project(":jmh-utils")
+
+    testImplementation project(":jmh-utils")
+}
+
+

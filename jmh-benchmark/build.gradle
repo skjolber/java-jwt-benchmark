@@ -10,12 +10,21 @@ dependencies {
     jmh project(":frameworks:okta-jwt-verifier-bench")
     jmh project(":frameworks:fusionauth-jwt-bench")
     jmh project(":frameworks:nimbus-bench")
+    jmh project(":frameworks:baseline-bench")
 
     jmh project(":jmh-utils")
 
     jmh "org.openjdk.jmh:jmh-core:${jmhVersion}"
     jmh "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
     jmh "org.openjdk.jmh:jmh-generator-bytecode:${jmhVersion}"
+
+    jmhImplementation ("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
+    jmhImplementation ("com.okta.jwt:okta-jwt-verifier-impl:${oktaVersion}")
+
+    jmhImplementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+    jmhImplementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+    jmhImplementation "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+
 
 }
 

@@ -1,6 +1,6 @@
 dependencies {
-    api("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
-    api("com.okta.jwt:okta-jwt-verifier-impl:${oktaVersion}")
+    api ("com.okta.jwt:okta-jwt-verifier:${oktaVersion}")
+    api ("com.okta.jwt:okta-jwt-verifier-impl:${oktaVersion}")
 }
 
 

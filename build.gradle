@@ -16,6 +16,7 @@ ext {
     fusionAuthVersion = '5.3.0'
     junitJupiterVersion = '5.10.0'
     jaxbVersion = '2.3.1'
+    bouncyCastleVersion = '1.76'
 }
 
 def buildProjects() {
@@ -59,7 +60,7 @@ configure(buildProjects()) {
             xml.enabled = false
             // spotbugs does not allow to generate a xml and html report at once https://github.com/spotbugs/spotbugs/issues/857
         }
-        // it.excludeFilter = file("$rootDir/spotbugs-exclude.xml")
+        it.excludeFilter = file("$rootDir/spotbugs-exclude.xml")
     }
 }
 
@@ -69,22 +70,32 @@ configure(project(':jmh-benchmark')) {
     apply plugin: 'me.champeau.jmh'
 
     jmh {
+        jvmArgs = ["--add-opens", "java.management/sun.management=ALL-UNNAMED", "--add-opens", "java.base/java.lang=ALL-UNNAMED"]
         resultFormat = 'JSON'
 
         warmup = '1s' // Time to spend at each warmup iteration.
         warmupIterations = 10
+
+        includes = ['JwtVerifyBenchmark']
 
         fork = 1
         timeOnIteration = '5s'
         iterations = 5
         benchmarkMode = ['thrpt']
 
+        //jvmArgs = ['-XX:+UseG1GC', '-XX:+UnlockDiagnosticVMOptions', '-XX:+UseMontgomerySquareIntrinsic', '-XX:+UseMontgomeryMultiplyIntrinsic', '-XX:+UseSquareToLenIntrinsic', '-XX:+UseMultiplyToLenIntrinsic']
         jvmArgs = ['-XX:+UseG1GC']
+
+        duplicateClassesStrategy = DuplicatesStrategy.WARN
     }
 
     jmhReport {
         jmhResultPath = project.file("build/results/jmh/results.json")
         jmhReportOutput = project.file("build/results/jmh")
+    }
+
+    jmhJar {
+        exclude 'LICENSE'
     }
 
     tasks.jmh.finalizedBy tasks.jmhReport
