@@ -76,7 +76,7 @@ configure(project(':jmh-benchmark')) {
         warmup = '1s' // Time to spend at each warmup iteration.
         warmupIterations = 10
 
-        includes = ['JwtVerifyBenchmark']
+        // includes = ['JwtVerifyBenchmark']
 
         fork = 1
         timeOnIteration = '5s'

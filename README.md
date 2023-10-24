@@ -29,8 +29,6 @@ Temporarily disable boost (untill next reboot) for AMD:
 
  > echo "0" | sudo tee /sys/devices/system/cpu/cpufreq/boost
 
-
-
 The JMH plugin seems to have trouble refreshing the project, so restart the Gradle deamon before running.
 ## Benchmarks
 
@@ -38,8 +36,11 @@ The JMH plugin seems to have trouble refreshing the project, so restart the Grad
   * Verify token
   * Verify token, get claim.
 
-## General observations
-There is not much headroom for improving the performance further. Most of the CPU time goes to signature verification.
+## General performance observations
+There is not much headroom for improving the performance of RSA-based signatures; most (> 90%) of the CPU time goes to signature verification. 
+
+This observation is based on two simple 'baseline' RSA-based JWT verifiers included in this project. They perform about 5% faster than the fastest JWT libraries, 
+but then only does signature verification and no JSON parsing / field validation. So it seems likely this is the upper limit.
 
 ## Latest results
 Running for OpenJDK 11 build 11.0.18+10 and OpenJDK 17 build 17.0.6+10, on Fedora Linux 6.1.8-200, AMD Ryzen 5950.

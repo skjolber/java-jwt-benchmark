@@ -6,7 +6,7 @@ import org.openjdk.jmh.annotations.Benchmark;
 
 import java.text.ParseException;
 
-public abstract class JwtParseBenchmark {
+public class JwtParseBenchmark {
 
     @Benchmark
     public com.nimbusds.jwt.JWT nimbus_parse(BenchmarkState state) throws ParseException {

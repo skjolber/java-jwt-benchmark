@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 1, time = 30, timeUnit = TimeUnit.SECONDS)
 public class JwtVerifyBenchmark {
 
-    /*
     @Benchmark
     public Object nimbus_verify(BenchmarkState state) throws Exception {
         return state.getNimbusTokenVerifier().verifyJsonWebToken(state.getToken());
@@ -37,15 +36,13 @@ public class JwtVerifyBenchmark {
     public Object auth0_verify(BenchmarkState state) throws Exception {
         return state.getAuth0TokenVerifier().verifyJsonWebToken(state.getToken());
     }
-*/
-        /*
 
+    /*
     @Benchmark
     public Object okta_verify(BenchmarkState state) throws Exception {
         return state.getOktaJsonWebTokenVerifier().verifyJsonWebToken(state.getToken());
     }
-
-         */
+    */
 
     @Benchmark
     public Object fusionauth_verify(BenchmarkState state) throws Exception {

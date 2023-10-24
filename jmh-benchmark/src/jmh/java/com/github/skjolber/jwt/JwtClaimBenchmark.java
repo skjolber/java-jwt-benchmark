@@ -2,7 +2,7 @@ package com.github.skjolber.jwt;
 
 import org.openjdk.jmh.annotations.Benchmark;
 
-public abstract class JwtClaimBenchmark {
+public class JwtClaimBenchmark {
 
     @Benchmark
     public Object nimbus_claim(BenchmarkState state) throws Exception {
@@ -30,6 +30,5 @@ public abstract class JwtClaimBenchmark {
     public Object fusionauth_claim(BenchmarkState state) throws Exception {
         return state.getFusionAuthJsonWebTokenVerifier().verifyJsonWebToken(state.getToken()).getObject("test");
     }
-
 
 }
