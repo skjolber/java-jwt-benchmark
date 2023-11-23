@@ -1,0 +1,4 @@
+dependencies {
+    api("org.bitbucket.b_c:jose4j:${jose4jVersion}")
+}
+

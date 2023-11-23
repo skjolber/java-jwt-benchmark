@@ -1,5 +1,6 @@
 package com.github.skjolber.jwt;
 
+import org.jose4j.jwt.Jose4JTokenVerifier;
 import com.auth0.jwt.Auth0TokenVerifier;
 import com.github.skjolber.bench.baseline.bc.BaseBouncyCastleJwtVerifier;
 import com.github.skjolber.bench.baseline.jdk.BaseJdkJwtVerifier;
@@ -29,6 +30,7 @@ public class BenchmarkState {
 
 	private BaseBouncyCastleJwtVerifier baseBouncyCastleJwtVerifier;
 	private BaseJdkJwtVerifier baseJdkJwtVerifier;
+	private Jose4JTokenVerifier jose4JTokenVerifier;
 
 	@Setup(Level.Trial)
 	public void init() throws Exception {
@@ -53,6 +55,7 @@ public class BenchmarkState {
 
 		baseBouncyCastleJwtVerifier = BaseBouncyCastleJwtVerifier.newInstance(generator.getKeyPair(), issuer, audience, token);
 		baseJdkJwtVerifier = BaseJdkJwtVerifier.newInstance(generator.getKeyPair(), issuer, audience, token);
+		jose4JTokenVerifier = Jose4JTokenVerifier.newInstance(generator.getKeyPair(), issuer, audience);
 	}
 	
 	public Auth0TokenVerifier getAuth0TokenVerifier() {
@@ -85,5 +88,9 @@ public class BenchmarkState {
 
 	public BaseJdkJwtVerifier getBaseJdkJwtVerifier() {
 		return baseJdkJwtVerifier;
+	}
+
+	public Jose4JTokenVerifier getJose4JTokenVerifier() {
+		return jose4JTokenVerifier;
 	}
 }
