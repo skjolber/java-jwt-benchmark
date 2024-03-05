@@ -37,6 +37,11 @@ public class JwtVerifyBenchmark {
         return state.getAuth0TokenVerifier().verifyJsonWebToken(state.getToken());
     }
 
+    @Benchmark
+    public Object jose4_verify(BenchmarkState state) throws Exception {
+        return state.getJose4JTokenVerifier().verifyJsonWebToken(state.getToken());
+    }
+
     /*
     @Benchmark
     public Object okta_verify(BenchmarkState state) throws Exception {

@@ -31,4 +31,9 @@ public class JwtClaimBenchmark {
         return state.getFusionAuthJsonWebTokenVerifier().verifyJsonWebToken(state.getToken()).getObject("test");
     }
 
+    @Benchmark
+    public Object jose4j_claim(BenchmarkState state) throws Exception {
+        return state.getJose4JTokenVerifier().verifyJsonWebToken(state.getToken()).getStringClaimValue("test");
+    }
+
 }

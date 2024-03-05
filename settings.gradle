@@ -1,2 +1,2 @@
-include 'jmh-utils', 'frameworks:java-jwt-bench', 'frameworks:jjwt-bench', 'frameworks:okta-jwt-verifier-bench', 'frameworks:fusionauth-jwt-bench', "frameworks:nimbus-bench", "frameworks:baseline-bench"
+include 'jmh-utils', 'frameworks:java-jwt-bench', 'frameworks:jjwt-bench', 'frameworks:okta-jwt-verifier-bench', 'frameworks:fusionauth-jwt-bench', "frameworks:nimbus-bench", "frameworks:baseline-bench", "frameworks:jose4j-bench"
 include 'jmh-benchmark'
