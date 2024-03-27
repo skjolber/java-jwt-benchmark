@@ -16,7 +16,7 @@ ext {
     fusionAuthVersion = '5.3.2'
     junitJupiterVersion = '5.10.0'
     jaxbVersion = '2.3.1'
-    bouncyCastleVersion = '1.76'
+    bouncyCastleVersion = '1.77'
     jose4jVersion = '0.9.3'
 }
 
