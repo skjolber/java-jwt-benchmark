@@ -2,7 +2,7 @@ plugins {
     id 'me.champeau.jmh' version '0.7.2' apply false
     id 'com.github.ben-manes.versions' version '0.51.0' apply false
     id 'org.owasp.dependencycheck' version '9.2.0' apply false
-    id "com.github.spotbugs" version "5.2.1" apply false
+    id "com.github.spotbugs" version "6.0.23" apply false
     id 'io.morethan.jmhreport' version '0.9.6' apply false
 }
 
