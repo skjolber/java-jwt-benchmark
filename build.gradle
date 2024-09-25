@@ -14,7 +14,7 @@ ext {
     jmhVersion = '1.37'
     oktaVersion = '0.5.8'
     fusionAuthVersion = '5.3.3'
-    junitJupiterVersion = '5.10.0'
+    junitJupiterVersion = '5.11.1'
     jaxbVersion = '2.3.1'
     bouncyCastleVersion = '1.78.1'
     jose4jVersion = '0.9.6'
