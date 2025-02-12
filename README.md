@@ -43,17 +43,23 @@ This observation is based on two simple 'baseline' RSA-based JWT verifiers inclu
 but then only does signature verification and no JSON parsing / field validation. So it seems likely this is the upper limit.
 
 ## Latest results
-Running for OpenJDK 11 build 11.0.18+10 and OpenJDK 17 build 17.0.6+10, on Fedora Linux 6.1.8-200, AMD Ryzen 5950.
+Running for OpenJDK 21 build 21.0.6+7 on Fedora Linux 6.12.9-200, AMD Ryzen 9950.
 
 Result visualizations:
 
- * [visualization_v1.5.0_jdk11]
- * [visualization_v1.5.0_jdk17]
+ * [visualization_v1.6.0]
  
 Summary: For JWT verification [fusionauth-jwt] and [java-jwt] are tied for first place. [fusionauth-jwt] can parse faster (without verification).
 
 # Previous results
 Note that **the relative number matters**, benchmarks are not necessarily run on the same machine, operating system or Java version.
+
+## Version 1.5.0:
+Running for OpenJDK 11 build 11.0.18+10 and OpenJDK 17 build 17.0.6+10, on Fedora Linux 6.1.8-200, AMD Ryzen 5950.
+
+* [visualization_v1.5.0]
+
+Summary: For JWT verification [fusionauth-jwt] and [java-jwt] are tied for first place. [fusionauth-jwt] can parse faster (without verification).
 
 ## Version 1.4.0:
 Running for OpenJDK 11 build 11.0.11.0.9, Fedora Linux 5.13.4-200, AMD Ryzen 7 PRO 3700U laptop.
@@ -121,6 +127,7 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 
 # History
 
+ - 1.6.0: Updated dependencies
  - 1.x: Added baseline JWT verifiers
  - 1.5.0: Updated dependencies
  - 1.3.0: Updated dependencies, added Nimbus JOSE + JWT
@@ -143,6 +150,7 @@ Only [java-jwt] seems to parse without validation, at about 65.2k operations per
 [visualization_v1.4.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.4.0/index.html
 [visualization_v1.5.0_jdk11]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.5.0_jdk11/index.html
 [visualization_v1.5.0_jdk17]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.5.0_jdk17/index.html
+[visualization_v1.6.0]:			https://skjolber.github.io/java-jwt-benchmark/jmh_v1.6.0/index.html
 [PR#255]:				https://github.com/auth0/java-jwt/pull/255
 [fusionauth-jwt]:			https://github.com/FusionAuth/fusionauth-jwt
 [FusionAuth]:				https://fusionauth.io/

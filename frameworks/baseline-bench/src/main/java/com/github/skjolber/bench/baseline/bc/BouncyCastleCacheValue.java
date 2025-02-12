@@ -1,9 +1,12 @@
 package com.github.skjolber.bench.baseline.bc;
 
+import org.bouncycastle.crypto.CryptoServicePurpose;
 import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.crypto.params.RSAKeyParameters;
+import org.bouncycastle.crypto.signers.RSADigestSigner;
 
 import java.math.BigInteger;
+
 
 public class BouncyCastleCacheValue {
 
@@ -27,7 +30,11 @@ public class BouncyCastleCacheValue {
 	public BouncyCastleThreadCacheValue getThreadCacheValue() {
 		BouncyCastleThreadCacheValue bouncyCastleThreadCacheValue = threadLocal.get();
 		if(bouncyCastleThreadCacheValue == null) {
-			bouncyCastleThreadCacheValue = new BouncyCastleThreadCacheValue(digest, payloadOffset, payloadLength, rsaKeyParameters);
+			SHA256Digest verifying = new SHA256Digest(CryptoServicePurpose.VERIFYING);
+			RSADigestSigner signer = new RSADigestSigner(verifying);
+			signer.init(false, rsaKeyParameters);
+
+			bouncyCastleThreadCacheValue = new BouncyCastleThreadCacheValue(digest, payloadOffset, payloadLength, verifying, signer);
 			threadLocal.set(bouncyCastleThreadCacheValue);
 		}
 		return bouncyCastleThreadCacheValue;

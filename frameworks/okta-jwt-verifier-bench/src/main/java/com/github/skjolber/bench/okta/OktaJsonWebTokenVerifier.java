@@ -20,7 +20,7 @@ public class OktaJsonWebTokenVerifier {
 	    SigningKeyResolver resolver = new SigningKeyResolver() {
             
             @Override
-            public Key resolveSigningKey(JwsHeader header, String plaintext) {
+            public Key resolveSigningKey(JwsHeader header, byte[] plain) {
                 return keyPair.getPrivate();
             }
             

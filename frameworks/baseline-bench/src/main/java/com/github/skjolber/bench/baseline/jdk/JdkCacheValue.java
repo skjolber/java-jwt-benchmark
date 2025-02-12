@@ -4,6 +4,7 @@ import org.bouncycastle.crypto.digests.SHA256Digest;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.Signature;
 import java.security.interfaces.RSAPublicKey;
 
 public class JdkCacheValue {
@@ -25,7 +26,10 @@ public class JdkCacheValue {
 	public JdkThreadCacheValue getThreadCacheValue() throws NoSuchAlgorithmException, InvalidKeyException {
 		JdkThreadCacheValue jdkThreadCacheValue = threadLocal.get();
 		if(jdkThreadCacheValue == null) {
-			jdkThreadCacheValue = new JdkThreadCacheValue(payloadOffset, payloadLength, publicKey);
+			Signature signature = Signature.getInstance("SHA256withRSA");
+			signature.initVerify(publicKey);
+
+			jdkThreadCacheValue = new JdkThreadCacheValue(payloadOffset, payloadLength, signature);
 			threadLocal.set(jdkThreadCacheValue);
 		}
 		return jdkThreadCacheValue;

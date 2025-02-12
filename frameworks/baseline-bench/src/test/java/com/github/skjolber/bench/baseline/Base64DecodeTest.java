@@ -19,11 +19,11 @@ public class Base64DecodeTest {
 
         byte[] bytes = com.github.skjolber.bench.baseline.Base64.decodeFast(encoded, 0, 256);
 
-        System.out.println("1: " + new String(bytes));
+        System.out.println("1: " + new String(bytes, StandardCharsets.UTF_8));
 
         byte[] decode = decoder.decode(encoded);
 
-        System.out.println("2: " + new String(decode));
+        System.out.println("2: " + new String(decode, StandardCharsets.UTF_8));
 
         assertEquals(bytes.length, decode.length);
         assertArrayEquals(bytes, decode);
@@ -41,11 +41,11 @@ public class Base64DecodeTest {
 
         byte[] bytes = com.github.skjolber.bench.baseline.Base64.decodeFast(encodedShifted, 100, 256);
 
-        System.out.println("1: " + new String(bytes));
+        System.out.println("1: " + new String(bytes, StandardCharsets.UTF_8));
 
         byte[] decode = decoder.decode(encoded);
 
-        System.out.println("2: " + new String(decode));
+        System.out.println("2: " + new String(decode, StandardCharsets.UTF_8));
 
         assertEquals(bytes.length, decode.length);
         assertArrayEquals(bytes, decode);

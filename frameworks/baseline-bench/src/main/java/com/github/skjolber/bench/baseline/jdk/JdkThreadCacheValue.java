@@ -17,12 +17,11 @@ public class JdkThreadCacheValue {
 
 	private final Signature signature;
 
-	public JdkThreadCacheValue(int headerSize, int payloadLength, RSAPublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException {
+	public JdkThreadCacheValue(int headerSize, int payloadLength, Signature signature) throws NoSuchAlgorithmException, InvalidKeyException {
 		this.payloadOffset = headerSize;
 		this.payloadLength = payloadLength;
 
-		signature = Signature.getInstance("SHA256withRSA");
-		signature.initVerify(publicKey);
+		this.signature = signature;
 	}
 
 	public boolean validate(byte[] jwt) throws SignatureException {

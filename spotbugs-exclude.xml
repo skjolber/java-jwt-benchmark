@@ -1,6 +1,0 @@
-<FindBugsFilter>
-    <!-- ignore benchmarks -->
-    <Match>
-        <Package name="com.github.skjolber.bench.baseline"/>
-    </Match>
-</FindBugsFilter>

@@ -9,7 +9,7 @@ public class BouncyCastleThreadCacheValue {
 
 	private final SHA256Digest initial;
 
-	private final SHA256Digest digest = new SHA256Digest(CryptoServicePurpose.VERIFYING);
+	private final SHA256Digest digest;
 
 	private int payloadLength;
 	private final int payloadOffset;
@@ -18,13 +18,12 @@ public class BouncyCastleThreadCacheValue {
 
 	private final byte[] buffer = new byte[256];
 
-	public BouncyCastleThreadCacheValue(SHA256Digest initial, int headerSize, int payloadLength, RSAKeyParameters rsaKeyParameters) {
+	public BouncyCastleThreadCacheValue(SHA256Digest initial, int headerSize, int payloadLength, SHA256Digest digest, RSADigestSigner signer) {
 		this.initial = initial;
 		this.payloadOffset = headerSize;
 		this.payloadLength = payloadLength;
-
-		this.signer = new RSADigestSigner(digest);
-		this.signer.init(false, rsaKeyParameters);
+		this.digest = digest;
+		this.signer = signer;
 	}
 
 	public boolean validate(byte[] jwt) {
