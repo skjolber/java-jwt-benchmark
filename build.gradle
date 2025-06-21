@@ -11,7 +11,7 @@ ext {
     jjwtVersion = '0.12.6'
     nimbusVersion = '10.3'
     jmhVersion = '1.37'
-    oktaVersion = '0.5.10'
+    oktaVersion = '0.5.12'
     fusionAuthVersion = '5.3.3'
     junitJupiterVersion = '5.13.1'
     jaxbVersion = '2.3.1'
