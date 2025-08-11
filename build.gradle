@@ -7,7 +7,7 @@ plugins {
 
 ext {
     javaJwtVersion = '4.5.0'
-    jwksRsaVersion = '0.22.2'
+    jwksRsaVersion = '0.23.0'
     jjwtVersion = '0.12.6'
     nimbusVersion = '10.4'
     jmhVersion = '1.37'
