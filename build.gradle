@@ -35,7 +35,11 @@ configure(libraryProjects()) {
     }
 
     dependencies {
-        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+        testImplementation(platform("org.junit:junit-bom:${junitJupiterVersion}"))
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+        testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
     }
 
 }
